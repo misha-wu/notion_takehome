@@ -22,7 +22,7 @@ __HELP_STR_TEMPLATE = \
 '''
 .-"-._,-'_`-._,-'_`-._,-'_`-._,-'_`-,_,-'_`-,_,-'_`-,_,-'_`-,_,-'_`-,.
 
-  Welcome to Sonnet 🕊️🕊️ a Notion Mailbox CLI
+  Welcome to Sonnet 🕊️🕊️ a Notion Mailbox CLI 🔖 
   
 .-"-._,-'_`-._,-'_`-._,-'_`-._,-'_`-,_,-'_`-,_,-'_`-,_,-'_`-,_,-'_`-,.
     Please select an option:

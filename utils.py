@@ -5,7 +5,7 @@ from typing import Optional
 from constants import __IS_OPENED, __MSG, __RECIPIENT, __SENDER
 from notion_client import Client
 
-notion = Client(auth=os.environ["NOTION_KEY"])
+notion = Client(auth=os.getenv("NOTION_KEY"))
 
 
 def mark_read_api(page_id: str):
@@ -83,7 +83,7 @@ def get_mail_api(recipient: str, sender: Optional[str] = None, all_mail: bool=Fa
 
   return notion.databases.query(
     **{
-      "database_id": os.environ["NOTION_PAGE_ID"],
+      "database_id": os.getenv("NOTION_PAGE_ID"),
       "filter": filter_arr,
     }
   )

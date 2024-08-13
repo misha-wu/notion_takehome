@@ -50,9 +50,9 @@ def check_mail(recipient: str, all_mail: bool):
   try:
     mail_results = get_mail_api(recipient, all_mail=all_mail)[__RESULTS]
     if all_mail:
-      click.echo(f"\tMail: ({len(mail_results)})")
+      click.echo(f"\t🕊️ Mail: ({len(mail_results)})")
     else:
-      click.echo(f"\tNew Mail: ({len(mail_results)})")
+      click.echo(f"\t🕊️ New Mail: ({len(mail_results)})")
     for result in mail_results:
       page_id = result['id']
 
