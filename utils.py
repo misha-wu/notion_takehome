@@ -4,8 +4,10 @@ import os
 from typing import Optional
 from constants import __IS_OPENED, __MSG, __RECIPIENT, __SENDER
 from notion_client import Client
+from dotenv import load_dotenv  # pip install python-dotenv
 
-notion = Client(auth=os.getenv("NOTION_KEY"))
+load_dotenv(".env")
+notion = Client(auth=os.environ["NOTION_KEY"])
 
 
 def mark_read_api(page_id: str):
@@ -46,9 +48,9 @@ def send_mail_api(message: str, recipient: str, sender: str):
   )
 
 
-def delete_mail_api(page_id: str):
-  notion.pages.trash(**{
-    "page_id": page_id,
+def delete_mail_api(block_id: str):
+  notion.blocks.delete(**{
+    "block_id": block_id,
     "archived": False
   })
 
@@ -66,6 +68,26 @@ def get_mail_api(recipient: str, sender: Optional[str] = None, all_mail: bool=Fa
         }},
       ]
     }
+    if sender is not None:
+      filter_arr["and"].append({
+        "property": __SENDER,
+        "rich_text": {
+          "equals": sender,
+        }
+      })
+  elif sender is not None:
+    filter_arr = {
+      "and": [
+        {"property": __RECIPIENT,
+          "rich_text": {
+            "equals": recipient,
+        }},
+        {"property": __SENDER,
+        "rich_text": {
+          "equals": sender,
+        }},
+      ]
+    }
   else:
     filter_arr = {
       "property": __RECIPIENT,
@@ -73,17 +95,9 @@ def get_mail_api(recipient: str, sender: Optional[str] = None, all_mail: bool=Fa
         "equals": recipient,
       }
     }
-  if sender is not None:
-    filter_arr["and"].append({
-      "property": __SENDER,
-      "rich_text": {
-        "equals": sender,
-      }
-    })
-
   return notion.databases.query(
     **{
-      "database_id": os.getenv("NOTION_PAGE_ID"),
+      "database_id": os.environ["NOTION_PAGE_ID"],
       "filter": filter_arr,
     }
   )

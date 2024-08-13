@@ -32,8 +32,8 @@ def burn_mail(username: str, sender: str) -> None:
   Burn mail from {sender} in {username}'s inbox.
   '''
   try:
-     mail_results = get_mail_api(username, sender, all_mail=True)
-     click.echo(f"️‍🔥️ Burning ({len(mail_results[__RESULTS])}) letters ️‍🔥️")
+     mail_results = get_mail_api(username, sender, all_mail=True)[__RESULTS]
+     click.echo(f"️‍🔥️ Burning ({len(mail_results)}) letter(s) ️‍🔥️")
      for result in mail_results:
        page_id = result['id']
        delete_mail_api(page_id)
@@ -70,10 +70,7 @@ def check_mail(recipient: str, all_mail: bool):
       mark_read_api(page_id)
       
   except APIResponseError as error:
-      if error.code == APIErrorCode.ObjectNotFound:
-        click.echo(f"Could not find user {recipient}")
-      else:
-        click.echo(error)
+    click.echo(error)
 
 @click.command()
 def sonnet():
