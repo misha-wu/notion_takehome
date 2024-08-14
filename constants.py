@@ -1,4 +1,3 @@
-
 DEFAULT_TEXT_WIDTH = 70
 __RESULTS = "results"
 __RECIPIENT = "Recipient"
@@ -18,8 +17,7 @@ message:
 
 
   """
-__HELP_STR_TEMPLATE = \
-'''
+__HELP_STR_TEMPLATE = """
 .-"-._,-'_`-._,-'_`-._,-'_`-._,-'_`-,_,-'_`-,_,-'_`-,_,-'_`-,_,-'_`-,.
 
   Welcome to Sonnet 🕊️🕊️ a Notion Mailbox CLI 🔖 
@@ -44,4 +42,4 @@ __HELP_STR_TEMPLATE = \
     -u, --username TEXT  Username  [required]
     -s, --sender TEXT    Sender username  [required]
     --help               Show this message and exit.
-  '''
+  """

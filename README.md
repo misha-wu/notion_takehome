@@ -17,6 +17,13 @@ Sonnet currently supports reading and sending mail between two specified parties
 	- -u, --username: user inbox
 	- -s, --sender: sender mail to delete from
 
+# Testing:
+Sonnet unit-tests individual functions with `pytest` and `click-test-runner` packages, mocking away database interactions.
+The CLI runner is mocked with click, while underlying notion API calls are patched with pytest mocks.
+
+To run tests, make sure your `venv` is activated.
+Then, run `pytest test/test_sonnet.py`.
+
 # Setup:
 
 1. make sure pip is installed
@@ -28,10 +35,14 @@ Sonnet currently supports reading and sending mail between two specified parties
 
 # Discussion:
 **Future Improvements**
-Currently, Sonnet does not include e2e testing, due to the fact that it is still a very barebones wrapper over the extensively-tested notion-client API. However, should Sonnet grow, adding integration/unit testing with `pytest` would be a great start.
-To support intuitive mailbox-like features, it would also be exciting to introduce mechanisms to mark mail unread, encrypt secret letters, schedule sending letters, and filter mailbox by sender usernames. 
+Moving forward, it would be good to have a more extensive suite of testing, including real end-to-end tests and mock server instances.
+To support intuitive mailbox-like features, it would also be exciting to introduce mechanisms to mark mail unread, encrypt secret letters, schedule sending letters, and filter mailbox by sender usernames.
+Similarly, better packaging could provide a more seamless experience.
 
 # Technical Choices:
+- Design:
+  - CLIs are already unintuitive in regards to state, so make an effort to give as much feedback to the user as possible! Confirm at every step that their actions have happened or errored, and communicate explicitly about the state of the system.
+  - Each message opened should have it's own information, and should not rely on users memorizing metadata -- thus the letter format.
 - Language to use: Python vs JS
 	- while JS is understandably the language of choice in prod, Python is much simpler to boostrap together -- thus, I leaned towards Python to quickly prototype my ideas. After iterations and feedback, I would consider swapping to JS for continuity in a greater framework... but for now, it servers our purposes just fine.
  - API to use: argparse vs click
@@ -40,6 +51,8 @@ To support intuitive mailbox-like features, it would also be exciting to introdu
  - Choosing features that fit the narrative: there was a theme!
 	 - Chose features that best align themselves with literature -- "burning all the letters you wrote me"? So Eliza.
 	 - In effort to best convey the idea of letters and notes, I templated the display text to suit the style as best as possible.
+ - Organizing modularity -- extracting shared functionality, constants, etc. for cleanliness in reading.
+ - Safe coding practices -- i.e. isolating variables with virtualenv, using .env for secret keys, using code cleaning packages like `black` or `flake8` and annotations when possible.
 
 # References:
 [Unofficial Python SDK Notion-client](https://github.com/ramnes/notion-sdk-py)
