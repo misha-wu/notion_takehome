@@ -55,7 +55,8 @@ Similarly, better packaging could provide a more seamless experience.
  - Safe coding practices -- i.e. isolating variables with virtualenv, using .env for secret keys, using code cleaning packages like `black` or `flake8` and annotations when possible.
 
 # Sample Usage:
-```.-"-._,-'_`-._,-'_`-._,-'_`-._,-'_`-,_,-'_`-,_,-'_`-,_,-'_`-,_,-'_`-,.
+```
+.-"-._,-'_`-._,-'_`-._,-'_`-._,-'_`-,_,-'_`-,_,-'_`-,_,-'_`-,_,-'_`-,.
 
   Welcome to Sonnet 🕊️🕊️ a Notion Mailbox CLI 🔖 
   
