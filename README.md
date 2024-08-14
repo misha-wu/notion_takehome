@@ -54,6 +54,65 @@ Similarly, better packaging could provide a more seamless experience.
  - Organizing modularity -- extracting shared functionality, constants, etc. for cleanliness in reading.
  - Safe coding practices -- i.e. isolating variables with virtualenv, using .env for secret keys, using code cleaning packages like `black` or `flake8` and annotations when possible.
 
+# Sample Usage:
+```.-"-._,-'_`-._,-'_`-._,-'_`-._,-'_`-,_,-'_`-,_,-'_`-,_,-'_`-,_,-'_`-,.
+
+  Welcome to Sonnet 🕊️🕊️ a Notion Mailbox CLI 🔖 
+  
+.-"-._,-'_`-._,-'_`-._,-'_`-._,-'_`-,_,-'_`-,_,-'_`-,_,-'_`-,_,-'_`-,.
+    Please select an option:
+  - send_mail: Send mail {message} from {recipient} to {sender}
+  Options:
+    -s, --sender TEXT     Sender username  [required]
+    -r, --recipient TEXT  Recipient username  [required]
+    -m, --message TEXT    Message to send  [required]
+    --help                Show this message and exit.
+
+  - check_mail: Check mail in {recipient}'s inbox.
+  Options:
+    -r, --recipient TEXT  Recipient username  [required]
+    -a, --all_mail        Show all mail
+    --help                Show this message and exit.
+  
+  - burn_mail: Burn mail from {sender} in {username}'s inbox.
+  Options:
+    -u, --username TEXT  Username  [required]
+    -s, --sender TEXT    Sender username  [required]
+    --help               Show this message and exit.
+  
+(.venv)  notion_takehome % burn_mail -u cat -s mouse
+️‍🔥️ Burning (1) letter(s) ️‍🔥️
+(.venv)  notion_takehome % burn_mail -u mouse -s conno
+️‍🔥️ Burning (1) letter(s) ️‍🔥️
+(.venv)  notion_takehome % 
+(.venv)  notion_takehome % send_mail -s alexander -r eliza -m "i miss you"
+️🔖 Sent letter with message: i miss you
+(.venv)  notion_takehome % send_mail -s alexander -r eliza -m "please..." 
+️🔖 Sent letter with message: please...
+(.venv)  notion_takehome % check_mail -r eliza
+	🕊️ New Mail: (2)
+.-"-._,-'_`-._,-'_`-._,-'_`-._,-'_`-,_,-'_`-,_,-'_`-,_,-'_`-,_,-'_`-,.
+2024-08-14T03:56:00.000Z
+        
+from:alexander
+to:eliza
+======================================================================
+message:
+please...
+======================================================================
+.-"-._,-'_`-._,-'_`-._,-'_`-._,-'_`-,_,-'_`-,_,-'_`-,_,-'_`-,_,-'_`-,.
+2024-08-14T03:56:00.000Z
+        
+from:alexander
+to:eliza
+======================================================================
+message:
+i miss you
+======================================================================
+(.venv)  notion_takehome % burn_mail -u eliza -s alexander
+️‍🔥️ Burning (2) letter(s) ️‍🔥️
+```
+
 # References:
 [Unofficial Python SDK Notion-client](https://github.com/ramnes/notion-sdk-py)
 [Database docs](https://developers.notion.com/docs/working-with-databases)
